@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+        Mark and John are both trying to calculate their BMI. This can be done iwht the following formula:
+        BMI = mass / height^2 
+        or...
+        BMI = mass / (height * height)
+        (mass is in kg and height is in meters)
+        1. Store Mark and John's mass and height in variables
+        2. Calculate both of their BMIs
+        3. Create a boolean variable containing information about whether Mark's BMI is higher than John's
+        4. Print a string to the console saying something like "It is (true/false) that John's BMI is higher than Mark's"
+        */
+
+        johnHeight = 1.8;
+        markHeight = 2.1;
+        johnWeight = 98;
+        markWeight = 104;
+
+        johnBMI = johnWeight / johnHeight ^ 2;
+        markBMI = markWeight / markHeight ^ 2;
+
+        function compareBMI() {
+            if (johnBMI > markBMI) {
+                console.log(`At ${johnBMI}, John's BMI is higher than Mark's, which is ${markBMI}`)
+            }
+            else { console.log(`At ${markBMI}, Mark's BMI is higher than John's, which is ${johnBMI}`) }
+        }
+
+        compareBMI();
+    </script>
+</body>
+
+</html>
