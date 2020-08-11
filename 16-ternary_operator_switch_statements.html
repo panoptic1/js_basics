@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Ternary Operator and Switch Statements</title>
+</head>
+
+<body>
+
+    <script>
+        var firstName = 'John';
+        var age = 16;
+
+        //ternary operator
+        age >= 18 ? console.log(firstName + ' drinks hootch.')
+            : console.log(`Have a chocolate milk, ${firstName}.`);
+
+        var drink = age >= 18 ? 'beer' : 'milk';
+
+        //switch statement
+        var job = `teacher`;
+        switch (job) {
+            case `teacher`:
+                console.log(`${firstName} teaches kids how to code.`);
+                break;
+            case `bartender`:
+                console.log(`${firstName} teaches kids how to code.`);
+                break;
+            case `coder`:
+                console.log(`${firstName} teaches kids how to code.`);
+                break;
+            default:
+                console.log(`${firstName} is unemployed.`)
+        }
+    </script>
+</body>
+
+</html>
