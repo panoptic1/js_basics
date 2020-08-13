@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Functions</title>
+</head>
+
+<body>
+
+    <script>
+
+        function calculateAge(birthYear) {
+            return 2020 - birthYear;
+        }
+
+        ageRyan = calculateAge(1983);
+        ageJazmin = calculateAge(1988);
+        ageDamon = calculateAge(2016);
+
+        function calculateRetirement(birthYear, firstName) {
+            var age = calculateAge(birthYear);
+            var retirement = 65 - age;
+
+            if (retirement > 0) {
+                console.log(firstName + " will retire in " + retirement + " years.");
+            } else {
+                console.log(firstName + " is already retired!");
+            }
+        };
+
+        calculateRetirement(1983, "Ryan");
+        calculateRetirement(1955, "Don");
+
+
+    </script>
+</body>
+
+</html>
