@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Function Statements & Expressions</title>
+</head>
+
+<body>
+
+    <script>
+        //Function Declaration
+        // function queryJob(job, firstName) {
+
+        // }
+        // Function Expression
+        var queryJob = function (job, firstName) {
+            switch (job) {
+                case 'teacher':
+                    return firstName + ' teaches kids how to code.';
+                case 'driver':
+                    return firstname + ' drives a hot-dog van.';
+                case 'phlebotomist':
+                    return firstName + ' draws blood from your arm.';
+                case 'influencer':
+                    return firstName + ' fabricates views of reality.';
+                default:
+                    return firstName + ' is unemployed.';
+            }
+        }
+
+        console.log(queryJob("phlebotomist", "Stabby"));
+        console.log(queryJob("influencer", "Drooly"));
+        console.log(queryJob("taxidermist", "Stuffy"));
+
+    </script>
+</body>
+
+</html>
