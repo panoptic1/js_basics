@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objects & Properties</title>
+</head>
+
+<body>
+
+    <script>
+        //the object literal
+        var myself = {
+            first: 'ryan',
+            last: 'helgerson',
+            yob: 1983,
+            family: ['jazmin', 'damon', 'roz'],
+            job: 'unemployed',
+            cool: true
+        }
+
+        //some ways to access the data
+        console.log(myself.first);
+        console.log(myself['last']);
+        var x = 'yob';
+        console.log(myself[x]);
+
+        //some ways to mutate the data
+        myself.job = "thought leader";
+        myself.family.push('khalon');
+        myself['cool'] = false;
+        console.log(myself);
+
+        var mywife = new Object();
+        mywife.first = 'jazmin';
+        mywife.last = 'cruz';
+        mywife.yob = 1988;
+        mywife['cool'] = true;
+        console.log(mywife);
+
+    </script>
+</body>
+
+</html>
