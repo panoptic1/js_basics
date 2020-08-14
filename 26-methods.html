@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objects & Methods</title>
+</head>
+
+<body>
+    <script>
+        console.log("Let's learn about methods!");
+        var myself = {
+            first: 'ryan',
+            last: 'helgerson',
+            yob: 1983,
+            family: ['jazmin', 'damon', 'roz'],
+            job: 'unemployed',
+            cool: true,
+            calcAge: function () {
+                // return 2020 - this.yob; //In this context, 'this' simply refers to 'this object right here that we find ourselves in right now.'
+                this.age = 2020 - this.yob; //Better yet, just set a new keyvalue pair from inside the object. Whoa!
+            }
+        }
+
+        // console.log(`I am ` + myself.calcAge() + `ish years old, motherfucker! What now?!`);
+
+        // myself.age = myself.calcAge(); //right here is a way to append a new key/value pair to my object using the method that I created
+        myself.calcAge();
+        console.log(myself);
+
+        //Takeaway: "'this' is an object keyword that allows an object to refer to itself"
+    </script>
+</body>
+
+</html>
