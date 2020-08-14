@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        var names = ['Ryan', 'Jazmin', 'Damon', 'Roz'];
+        var dogs = new Array('Khalon', 'Russell', 'Nick', 'Buttercup');
+        console.log(names[0]);
+        console.log(dogs[0]);
+
+        //Mutating Array Data
+        dogs[3] = 'Mama Bear';
+        console.log(dogs);
+
+        names[names.length] = "Kenny";
+        console.log(names);
+
+        //different data types
+        var ryan = ['Ryan', 'Helgerson', '', undefined, 37, true, "programmer"];
+        console.log(ryan);
+
+        //array methods for adding to the array
+        ryan.push("black");
+        ryan.unshift("Mr.");
+        console.log(ryan);
+
+        //methods for removing things from the array
+        // ryan.pop();
+        // console.log(ryan);
+        // ryan.pop();
+        // console.log(ryan);
+        // ryan.shift();
+        // console.log(ryan);
+
+        //for locating something on the array...
+        ryan.indexOf(37);
+        console.log(ryan.indexOf(37));
+
+        var isRyanProgrammer = ryan.indexOf("programmer") === -1 ? 'Ryan is not a programmer' : 'Ryan is a programmer';
+        console.log(isRyanProgrammer);
+
+    </script>
+</body>
+
+</html>
