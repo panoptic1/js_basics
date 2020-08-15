@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loops & Iteration</title>
+</head>
+
+<body>
+
+    <script>
+        console.log("Let's get loopy!");
+        //Loops are considered a 'control structure'
+
+        //the 'for' loop : for (counter; condition; incrementer)
+        for (var i = 0; i < 10; i++) {
+            console.log(i);
+        }
+
+        //use it on an array
+        // var ryan = ['helgerson', 'teacher', 'coder', true, 37];
+
+        // for (var i = 0; i < ryan.length; i++) {
+        //     console.log(ryan[i]);
+        // }
+        var ryan = ['helgerson', true, 'teacher', 'coder', true, 37];
+
+        //the 'while' loop : while (condition);
+        //the only difference between 'for' and 'while' is that the latter needs only a condition, no counter.
+        var i = 0;
+        while (i < ryan.length) {
+            console.log(`Attribute #${[i]}: ${ryan[i]}`);
+            i++;
+        }
+        //however, because you must declare the i variable outside of the loop statement and increment within the function,
+        //it is less convenient. But it exists. 
+
+
+        for (var i = 0; i < ryan.length; i++) {
+            if (typeof ryan[i] !== 'string') continue;
+            console.log(ryan[i]);
+        }
+
+        for (var i = 0; i < ryan.length; i++) {
+            if (typeof ryan[i] !== 'string') break;
+            console.log(ryan[i]);
+        }
+
+        //challenge: how might you execute the loop in reverse?
+        for (var i = ryan.length; i >= 0; i--) {
+            // if (typeof ryan[i] !== 'string') break;
+            console.log(ryan[i]);
+        }
+
+    </script>
+</body>
+
+</html>
