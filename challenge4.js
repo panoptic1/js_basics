@@ -30,13 +30,14 @@ var ryan = {
         this.heightMeters = this.inchesTall * .0254;
     },
     calcBmi: function () {
-        this.bmi = this.weightKg / this.heightMeters ^ 2;
+        this.bmi = this.weightKg / (this.heightMeters * this.heightMeters);
     },
 };
 
 ryan.toKg();
 ryan.toMeters();
 ryan.calcBmi();
+console.log(ryan);
 
 var troy = {
     first: "troy",
@@ -50,7 +51,7 @@ var troy = {
         this.heightMeters = this.inchesTall * .0254;
     },
     calcBmi: function () {
-        this.bmi = this.weightKg / this.heightMeters ^ 2;
+        this.bmi = this.weightKg / (this.heightMeters * this.heightMeters);
     },
 };
 
@@ -70,7 +71,7 @@ var danny = {
         this.heightMeters = this.inchesTall * .0254;
     },
     calcBmi: function () {
-        this.bmi = this.weightKg / this.heightMeters ^ 2;
+        this.bmi = this.weightKg / (this.heightMeters * this.heightMeters);
     },
 };
 
@@ -78,6 +79,7 @@ danny.toKg();
 danny.toMeters();
 danny.calcBmi();
 
+console.log(ryan.bmi, troy.bmi, danny.bmi);
 
 if (ryan.bmi > troy.bmi && ryan.bmi > danny.bmi) {
     console.log(`${ryan.first}` + ` ` + `${ryan.last} has the highest BMI, coming in at an index of ${ryan.bmi}.`)
