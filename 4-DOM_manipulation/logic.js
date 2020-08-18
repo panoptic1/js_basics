@@ -10,3 +10,18 @@ GAME RULES:
 */
 
 console.log("Let's code!");
+
+var scores, roundScores, activePlayer, dice;
+
+scores = [0, 0];
+roundScore = 0;
+activePlayer = 0;
+
+dice = Math.floor(Math.random() * 6) + 1;
+var rolls = [];
+
+for (var i = 0; i < 10; i++) {
+    rolls.push(dice);
+}
+
+console.log(rolls);
