@@ -8,23 +8,36 @@ GAME RULES:
 - The first player to reach 100 points on GLOBAL score wins the game
 
 */
-
-console.log("Let's code!");
-
-var scores, roundScores, activePlayer, dice;
+//Global Variables
+var scores, roundScores, activePlayer;
 
 scores = [0, 0];
 roundScore = 0;
 activePlayer = 1;
 
-dice = Math.floor(Math.random() * 6) + 1;
-console.log(dice);
-
-document.querySelector('#current-' + activePlayer).textContent = dice;
-//document.querySelector('#current-' + activePlayer).innerHTML = '<em>' + dice + '</em>';
-
-var x = document.querySelector('#score-0').textContent;
-console.log(x);
-
 document.querySelector('.dice').style.display = 'none';
 
+document.getElementById('score-0').textContent = '0';
+document.getElementById('score-1').textContent = '0';
+document.getElementById('current-0').textContent = '0';
+document.getElementById('current-1').textContent = '0';
+
+document.querySelector('.btn-roll').addEventListener('click', roll);
+
+function roll() {
+    console.log(`Roll, homie!`);
+    //1. Generate a random number between 1 and six and store it as a variable.
+    var dice = Math.floor(Math.random() * 6) + 1;
+
+    //2. Display the result
+    var diceEl = document.querySelector('.dice');
+    diceEl.style.display = 'block';
+    diceEl.src = 'dice-' + dice + '.png';
+}
+
+
+//document.querySelector('#current-' + activePlayer).textContent = dice;
+//document.querySelector('#current-' + activePlayer).innerHTML = '<em>' + dice + '</em>';
+
+//var x = document.querySelector('#score-0').textContent;
+//console.log(x);
