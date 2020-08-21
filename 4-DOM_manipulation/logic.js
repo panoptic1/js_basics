@@ -7,15 +7,27 @@ GAME RULES:
 - The first player to reach 100 points on GLOBAL score wins the game
 */
 //Global Variables
-var scores, roundScore, activePlayer, gamePlaying;
+var scores, roundScore, activePlayer, gamePlaying, targetScore;
 
 var rolls = [];
+
+targetScore = 100;
+
+btn = document.querySelector('#set-score');
+
+btn.addEventListener('click', setScore);
+
+function setScore(){
+    targetScore = document.getElementById('winscore').value;
+    console.log(targetScore);
+}
+
 
 startGame();
 
 document.querySelector('.btn-roll').addEventListener('click', function(){
     if(gamePlaying) {
-        console.log(`Roll, homie!`);
+        console.log(winscore);
         //1. Generate a random number between 1 and six and store it as a variable.
         var dice = Math.floor(Math.random() * 6) + 1;
 
@@ -65,18 +77,25 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
         //Update the UI
         document.getElementById('score-' + activePlayer).textContent = scores[activePlayer]; 
         //Check if the player won the game
-        if (scores[activePlayer] >= 100) {
-            document.querySelector('#name-' + activePlayer).textContent = 'Winner!';
-            document.querySelector('.dice').style.display = 'none';
-            document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
-            document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
-            gamePlaying = false;
-            } else {
+        if (winscore && scores[activePlayer] > winscore.value) {
+            console.log(winscore.value);
+        }
+        if (scores[activePlayer] >= targetScore) {
+            renderWinner();
+        } else {
             //The next player takes their turn
             nextPlayer();
         };
     }    
 });
+
+function renderWinner() {
+    document.querySelector('#name-' + activePlayer).textContent = 'Winner!';
+    document.querySelector('.dice').style.display = 'none';
+    document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
+    document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
+    gamePlaying = false;
+}
 
 function nextPlayer() {
     //Next player
@@ -101,6 +120,7 @@ function startGame(){
     scores = [0, 0];
     activePlayer = 0;
     roundScore = 0;
+    winscore = '';
 
     document.querySelector('.dice').style.display = 'none';
 
@@ -117,6 +137,7 @@ function startGame(){
     document.querySelector('.player-0-panel').classList.add('active');
 };
 
+
 /*
 YOUR 3 CHALLENGES
 Change the game to follow these rules:
@@ -124,7 +145,9 @@ Change the game to follow these rules:
 1. A player looses his ENTIRE score when he rolls two 6 in a row. After that, it's the next player's turn.
  (Hint: Always save the previous dice roll in a separate variable)
 
-2. Add an input field to the HTML where players can set the winning score, so that they can change the predefined score of 100. (Hint: you can read that value with the .value property in JavaScript. This is a good oportunity to use google to figure this out :)
+2. Add an input field to the HTML where players can set the winning score, so that they can change the predefined score of 100. 
+(Hint: you can read that value with the .value property in JavaScript. This is a good oportunity to use google to figure this out :)
+
 3. Add another dice to the game, so that there are two dices now. The player looses his current score when one of them is a 1. (Hint: you will need CSS to position the second dice, so take a look at the CSS code for the first one.)
 */
 
