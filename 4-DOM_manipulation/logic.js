@@ -20,6 +20,7 @@ btn.addEventListener('click', setScore);
 function setScore(){
     targetScore = document.getElementById('winscore').value;
     console.log(targetScore);
+    document.getElementById('winscore').value = '';
 }
 
 
@@ -29,10 +30,12 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
     if(gamePlaying) {
         console.log(winscore);
         //1. Generate a random number between 1 and six and store it as a variable.
-        var dice = Math.floor(Math.random() * 6) + 1;
+        var dice1 = Math.floor(Math.random() * 6) + 1;
+        var dice2 = Math.floor(Math.random() * 6) + 1;
 
         //Push the result of each roll into the 'rolls' array
-        rolls.push(dice);
+        rolls.push(dice1);
+        rolls.push(dice2);
         
         //Once the array reaches a length of two, cap it by shifting off the first item for every roll thereafter
         if (rolls.length > 2) {
@@ -49,16 +52,19 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
         };
 
         //2. Display the result
-        var diceEl = document.querySelector('.dice');
-        diceEl.style.display = 'block';
-        diceEl.src = 'dice-' + dice + '.png';
+        var diceEl1 = document.getElementById('dice-1');
+        var diceEl2 = document.getElementById('dice-2');
+        diceEl1.style.display = 'block';
+        diceEl2.style.display = 'block';
+        diceEl1.src = 'dice-' + dice1 + '.png';
+        diceEl2.src = 'dice-' + dice2 + '.png';
 
         console.log(rolls);
 
         //3. Update the round score IF it was not a 1 OR if the last two rolls were not sixes
-        if (dice !== 1) {
+        if (dice1 !== 1 && dice2 !== 1) {
             //Add Score
-            roundScore += dice;
+            roundScore += (dice1 + dice2);
             document.querySelector('#current-' + activePlayer).textContent = roundScore;
         } else {
             //Next player
