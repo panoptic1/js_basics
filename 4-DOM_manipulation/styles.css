@@ -18,6 +18,16 @@
 
 .final-score:focus { outline: none; }
 
+.label {
+    margin: 10px auto;
+    background-position: center;
+    text-align: center;
+    padding: 10px;
+    font-size: 18px;
+    font-family: 'Lato';
+    width: 160px;
+}
+
 #dice-1 { top: 120px; }
 #dice-2 { top: 250px; }
 
