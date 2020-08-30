@@ -96,3 +96,58 @@ change(age, obj);
 
 console.log(age);
 console.log(obj.city);
+
+//Lecture: Passing Functions as Arguments
+
+/*
+Some things about functions:
+1. They are always instantiations of the Object type
+2. They behave like any other object
+3. They can be stored in a variable
+4. They can be passed as an argument to another function
+5. They can be returned from a function
+*/
+
+//Passing functions as arguments
+
+var years = [1983, 1991, 1939, 2007, 2015];
+
+function arrayCalc(arr, fn) {
+    var arrRes = [];
+    for (var i = 0; i < arr.length; i++) {
+        arrRes.push(fn(arr[i]));
+    }
+    return arrRes;
+}
+
+function calculateAge(el) {
+    return 2020 - el;
+};
+
+function canDrink(el) {
+    return el >= 21;
+};
+
+function calcHeartMax(el) {
+
+    if (el >= 18 && el <= 81) {
+        return Math.round(206.9 - (0.67 * el));
+    } else {
+        return 'n/a';
+    }
+};
+
+var ages = arrayCalc(years, calculateAge);
+
+console.log(ages);
+
+var drinkers = arrayCalc(ages, canDrink);
+console.log(drinkers);
+
+var maxBpms = arrayCalc(ages, calcHeartMax);
+console.log(maxBpms);
+
+
+
+
+
