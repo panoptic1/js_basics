@@ -323,7 +323,84 @@ interviewQuestion('teacher')('Ryan');
 var interviewDesigner = interviewQuestion('designer');
 interviewDesigner('Ryan');
 
+//Lecture:  BIND    /   CALL    /   APPLY
 
+var ryan = {
+    name: 'Ryan',
+    age: 37,
+    job: 'desempleado',
+    introduction: function(style, timeOfDay) {
+        if (style === 'formal') {
+            console.log(`Good ` + timeOfDay + 
+                        `, how do you do? My name is ` + this.name + 
+                        ` and I am ` + this.age + 
+                        ` years old. I'm a ` + this.job + `.`);
+        }
+        else if (style === 'casual') {
+            console.log(`Hey bro, what's poppin' this ` + timeOfDay + 
+            `? It's ` + this.name + `, homie.`);
+        }
+    }
+};
 
+ryan.introduction('formal', 'morning');
+
+//Now, let's make another object for Jazmin, but without any methods. 
+var jazmin = {
+    name: `Jazmin`,
+    age: 32,
+    job: `social worker`,
+}
+
+//Suppose that we want to use the 'introduction' method in the 'ryan' object for Jazmin. 
+//This is where we can use the .call method.
+ /*
+    How does this work? 
+    The first parameter of the call method is used to set the 'this' keyword. 
+ */
+
+ ryan.introduction.call(jazmin, 'casual', 'evening');
+//By using the call method after invoking the presentation method
+//on the 'ryan' object, you are basically telling the parser(?) that you want to use the prentation method, but it should set the 'this' object
+//to the 'jazmin' object instead of ryan. 
+
+//apply works similarly, but it accepts an array as the second argument which contains all of the other arguments. 
+// ryan.introduction.apply(jazmin, ['formal', 'afternoon']);
+//this syntax won't work here because the method indicated doesn't expect an array.
+
+//bind works similarly except that instead of immediately calling the function, 
+//it creates a copy of the function so that you can store it and use it later. 
+//this enables us, in effect, to create functions with pre-set arguments. 
+
+var ryanFriendly = ryan.introduction.bind(ryan, 'casual');
+ryanFriendly('morning');
+
+var jazminFormal = ryan.introduction.bind(jazmin, 'formal');
+jazminFormal('evening');
+//this process is called 'currying', and it basically means what we just did: using existing functions but with preconfigured parameters.
+
+var years = [1983, 1991, 1939, 2007, 2015];
+
+function arrayCalc(arr, fn) {
+    var arrRes = [];
+    for (var i = 0; i < arr.length; i++) {
+        arrRes.push(fn(arr[i]));
+    }
+    return arrRes;
+}
+
+function calculateAge(el) {
+    return 2020 - el;
+};
+
+function canDrink(limit, el) {
+    return el >= limit;
+};
+
+var ages = arrayCalc(years, calculateAge);
+
+var canDrinkBrittania = arrayCalc(ages, canDrink.bind(this, 18));
+console.log(ages);
+console.log(canDrinkBrittania);
 
 
