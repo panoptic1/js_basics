@@ -120,6 +120,12 @@ function arrayCalc(arr, fn) {
     return arrRes;
 }
 
+function populateDeck(cards) {
+    for (var i = 0; i < amt; i++) {
+        
+    }
+}
+
 function calculateAge(el) {
     return 2020 - el;
 };
@@ -146,6 +152,176 @@ console.log(drinkers);
 
 var maxBpms = arrayCalc(ages, calcHeartMax);
 console.log(maxBpms);
+
+//Functions returning functions
+
+function interviewQuestion(job) {
+    if (job === 'designer') {
+        return function(name) {
+            console.log(name + ', can you please explain what UX design is?');
+        }
+    } else if (job === 'teacher') {
+        return function(name) {
+            console.log('What subject do you teach, ' + name + '?');
+        }
+    } else {
+        return function(name) {
+            console.log('Hello ' + name + ', what are your skills?');
+        }
+    }
+}
+
+var teacherQuestion =
+interviewQuestion('teacher');
+
+var designerQuestion =
+interviewQuestion('designer');
+
+teacherQuestion('Ryan');
+designerQuestion('Ryan');
+interviewQuestion('writer')('Ryan');
+
+var deck = [];
+
+//IIFE
+
+function game() {
+    var score = Math.random() * 10;
+    console.log(score >= 5);
+}
+
+game();
+
+(function () {
+    var score = Math.random() * 10;
+    console.log(score >= 5);
+})();
+
+
+(function (goodLuck) {
+    var score = Math.random() * 10;
+    console.log(score >= 5 - goodLuck);
+})(1);
+
+//One thing that the IIFE provides is DATA PRIVACY.
+//By creating a new scope, the variables within the IIFE
+//remain compartmentalized from the global scope. 
+
+//CLOSURES ***BFD***
+//By way of illustration, we will start by making a
+//function that calculates the years until retirement
+
+function retirement(retirementAge) {
+    var a = ' years left until retirement.';
+    return function(yob) {
+        var age = 2020 - yob;
+        console.log((retirementAge - age) + a);
+    }
+}
+
+var retirementUS = retirement(66);
+retirementUS(1983);
+
+retirement(65)(1989);
+
+//THE GHOST IN THE MACHINE
+/*
+So this is truly bizarre. I can see why this would come up in interview questions. 
+I am going to attempt to explain what just happened there knowing full well that it's kind of inexplicable. 
+1. I invoked the retirement function using a made up retirementAge of 65
+2. The 'a' variable was created in the first part of the function's execution context before it returns the anonymous function inside of it
+3. The anonymous function then executes after the retirement function has 'popped off of the execution stack' after having returned the Anonymous Function
+4. The anonymous function creates the age variable using the second argument that I had 'set aside' for it.
+5. Finally, the anonymous function logs the years until retirement using the difference between 'retirementAge' and 'age' in addition to the 'a' variable, which holds the string message. 
+^^^That last part is where the head scratching begins. The 'retirementAge' variable as well as the 'a' variable should technically NOT have been able
+to log, because they live in the context of the 'retirement' function, which has already closed after returning the anonymous function. 
+This is what is referred to as a closure. 
+
+Here's the Rule:
+An inner function always has access to the variables of its outer function,
+Even after that function has returned.
+
+This enables us to be modular, because we can create more specific functions using the general pattern we have created.
+*/
+
+var retirementRyanland = retirement(44);
+var retirementIceland = retirement(67);
+
+retirementUS(1983);
+retirementIceland(1983);
+retirementRyanland(1983);
+
+/*
+Jonas's challenge: Rewrite the following function using the magical power of closures...
+
+function interviewQuestion(job) {
+    if (job === 'designer') {
+        return function(name) {
+            console.log(name + ', can you please explain what UX design is?');
+        }
+    } else if (job === 'teacher') {
+        return function(name) {
+            console.log('What subject do you teach, ' + name + '?');
+        }
+    } else {
+        return function(name) {
+            console.log('Hello ' + name + ', what are your skills?');
+        }
+    }
+}
+*/
+
+// function interviewQuestion(name) {
+//     var greeting = `Thanks for coming to talk to us, ` + name + `. Why don't we start by asking you a question about your experience.`;
+//     var writer = ` What are you thoughts on the concept of 'writer's block? Is it real? If so, how do you cope with it?`;
+//     var coder = ` Say you have to create an array of 81 cards. Each card must be an object with four properties, each with three possible values. Each card must have a unique combination of values for each property. How would you perform this task?`;
+//     var teacher = ` What is your classroom management philosophy?`;
+
+//     return function (job) {
+//         var generic =  ` Why should I hire you?`;
+//         if (job === 'writer') {
+//             console.log(greeting + writer);
+//         }
+//         else if (job === 'coder') {
+//             console.log(greeting + coder);
+//         }
+//         else if (job === 'teacher') {
+//             console.log(greeting + teacher);
+//         }
+//         else {
+//             console.log(greeting + generic);
+//         }
+//     }
+// }
+
+// interviewQuestion(`Ryan`)(`coder`);
+
+
+// var interviewTroy = interviewQuestion('Troy');
+
+// interviewTroy('Echo tech');
+
+//It's actually optimal to do this in reverse order (according to Jonas)...
+
+function interviewQuestion(job) {
+
+    return function(name) {
+        if (job === `designer`) {
+            console.log(name + ', can you please explain what UX design is?');
+        }
+        else if (job === `teacher`) {
+            console.log('What subject do you teach, ' + name + '?');
+        }
+        else {
+            console.log('Hello ' + name + ', what are your skills?');
+        }
+    }
+}
+
+interviewQuestion('teacher')('Ryan');
+
+var interviewDesigner = interviewQuestion('designer');
+interviewDesigner('Ryan');
 
 
 
