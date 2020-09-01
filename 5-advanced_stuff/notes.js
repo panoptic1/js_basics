@@ -40,8 +40,23 @@ var Card = function(color, number, shape, clarity) {
 };
 
 var cardX = new Card('black', 12, 'hexagon', 'clear');
+var deck = [];
 
-console.log(cardX);
+var colors = ['red', 'green', 'purple'];
+
+var numbers = [1, 2, 3];
+
+var shapes = ['diamond', 'squiggle', 'oval'];
+
+
+
+for (var i = 0; i < 81; i++) {
+    
+    deck[i] = new Card(colors[Math.random], 3, 'square', 'shaded');
+    
+}
+
+console.log(deck);
 
 // Object.create
 /*
