@@ -90,6 +90,7 @@ c) correct answer (I would use a number for this)
 
 */
 (function() {
+
     var Question = function(question, answerChoices, correctAnswer) {
         this.question = question;
         this.answerChoices = answerChoices;
@@ -103,11 +104,12 @@ c) correct answer (I would use a number for this)
     var question5 = new Question("Who is the lead singer of the band Pearl Jam?", [`Eddie Vedder`, `Scott Weiland`, `Thom Yorke`, `Maynard Keenan`], 0);
     var question6 = new Question("Which singer is godmother to Elton John's two sons?", [`Lady Gaga`, `Madonna`, `Joan Jett`, `Miley Cyrus`], 0);
     var question7 = new Question("What is the name of that one Fleetwood Mac song that the Smashing Pumpkins covered?", [`Never Going Back`, `The Chain`, `Landslide`, `Dreams`], 2);
-    var question8 = new Question("Released in 1971, what is the title of the album by T.Rex that signalled the band's turn from folk to glam?", [`Sparkle Boogaloo`, `Tanx`, `Electric Warrior`, `Futuristic Dragon`], 2);
+    var question8 = new Question("Released in 1971, what is the title of the album by T.Rex that signalled the band's turn from 'folk' to 'glam'?", [`Sparkle Boogaloo`, `Tanx`, `Electric Warrior`, `Futuristic Dragon`], 2);
     var question9 = new Question("What was the name of the first band that Jimi Hendrix formed with a friend after being discharged from the army?", [`Olive Drab`, `The Sunburst Brothers`, `Little Golden Wings`, `King Kasuals`], 3);
     var question10 = new Question("What film did Tejana singer Selena appear in months before her death?", [`Stand and Deliver`, `Beaches`, `Don Juan Demarco`, `The Fugitive`], 2);
 
     var questions = [];
+    var playerScore = 0;
 
     questions.push(question1);
     questions.push(question2);
@@ -120,40 +122,54 @@ c) correct answer (I would use a number for this)
     questions.push(question9);
     questions.push(question10);
 
-    Question.prototype.displayQuestion = 
-    function() {
-        console.log(this.question);
-        console.table(this.answerChoices);
-    };
-
-    var randomQ = questions[Math.floor(Math.random() * 10)];
-    randomQ.displayQuestion();
-
-    var answer = prompt("Enter the numerical value that corresponds with the correct answer here...", `Whaddaya think?`);
-
-    Question.prototype.checkAnswer = function() {
-        if (this.correctAnswer == answer){
-            console.log("You got it!")
-        } else {console.log(`Wrong-o!`)};
-    };
-
-    randomQ.checkAnswer();
+    document.addEventListener('keydown', playGame);
 
     /*
     --- Expert level ---
     8. After you display the result, display the next random question, so that the game never ends (Hint: write a function for this and call it right after displaying the result)
     */
+
+    function playGame() {
+
+        Question.prototype.displayQuestion = 
+        function() {
+            console.log(this.question);
+            console.table(this.answerChoices);
+        };
+    
+        var randomQ = questions[Math.floor(Math.random() * questions.length)];
+        randomQ.displayQuestion();
+    
+        var answer = prompt("Enter the number for the correct answer, or type 'exit' if yr done.", `0, 1, 2, or 3?`);
+    
+        Question.prototype.checkAnswer = function() {
+            if (this.correctAnswer == answer){
+                playerScore++;
+                console.log(`Bingo! Player score: ${playerScore}`)
+                playGame();
+            }
+            /*
+            9. Be careful: after Task 8, the game literally never ends. So include the option to quit the game if the user writes 'exit' instead of the answer. In this case, DON'T call the function from task 8.
+            */
+            else if (answer === 'exit'){
+                console.log(`See you next time!`);
+                return;
+            }
+            else {console.log(`Wrong-o! Score: ${playerScore}`)
+        playGame()};
+        };
+    
+        randomQ.checkAnswer();
+
+
+
+    };
+
+
 })();
 
 
 /*
---- Expert level ---
-8. After you display the result, display the next random question, so that the game never ends (Hint: write a function for this and call it right after displaying the result)
-*/
-
-/*
-9. Be careful: after Task 8, the game literally never ends. So include the option to quit the game if the user writes 'exit' instead of the answer. In this case, DON'T call the function from task 8.
-
 10. Track the user's score to make the game more fun! So each time an answer is correct, add 1 point to the score (Hint: I'm going to use the power of closures for this, but you don't have to, just do this with the tools you feel more comfortable at this point).
 
 11. Display the score in the console. Use yet another method for this.
