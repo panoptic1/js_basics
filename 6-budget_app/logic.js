@@ -5,7 +5,33 @@ console.log("Let's organize our finances!");
 
 //BUDGET CONTROLLER
 var budgetController = (function() {
-    //some code
+    
+    //expense object constructor
+    var Expense = function(id, description, value){
+        this.id = id;
+        this.description = description;
+        this.value = value;
+    };
+
+    //income object constructor
+    var Income = function(id, description, value){
+        this.id = id;
+        this.description = description;
+        this.value = value;
+    };
+
+    var data = {
+        
+        allItems: {
+            expenses: [],
+            incomes: []
+        },
+
+        totals: {
+            expense: 0,
+            income: 0
+        }
+    }
 
 })();
 
