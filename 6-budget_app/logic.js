@@ -44,7 +44,19 @@ var UIController = (function() {
 //think of it as a 'go-between' or a 'corpus callosum' if you will
 var controller = (function(budgetCtrl, UICtrl) {
 
-    var DOM = UIController.getDOMstrings();
+    var setupEventListeners = function(){
+        var DOM = UIController.getDOMstrings();
+        document.querySelector(DOM.inputBtn).addEventListener(`click`, ctrlAddItem);
+
+        document.addEventListener('keypress', function(event){
+        
+        if (event.keyCode === 13 || event.which === 13){
+            ctrlAddItem();
+            };
+        });
+    };
+
+
 
     var ctrlAddItem = function() {
         // 1. get the field input data
@@ -60,14 +72,15 @@ var controller = (function(budgetCtrl, UICtrl) {
 
         // 5. display the budget
         
+    };
+
+    return {
+        init: function() {
+            console.log(`Application has started.`);
+            setupEventListeners();
+        }
     }
 
-    document.querySelector(DOM.inputBtn).addEventListener(`click`, ctrlAddItem);
-
-    document.addEventListener('keypress', function(event){
-        
-        if (event.keyCode === 13 || event.which === 13){
-            ctrlAddItem();
-        };
-    });
 })(budgetController, UIController);
+
+controller.init();
