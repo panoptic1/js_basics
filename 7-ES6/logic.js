@@ -1,6 +1,6 @@
 console.log("Uploading ES6!")
 
-// Lecture: let and const
+// Lecture: let and const (VARIABLES)
 
 // ES5
 var name5 = `Jane Smith`;
@@ -69,3 +69,26 @@ This is cool. The two 'i' variables behave completely independently and don't in
 This is also because of block-scoping versus function-scoping.
 */
 
+
+//Lecture: BLOCKS AND IIFEs
+{
+    const a = 1;
+    let b = 2;
+    var c = 3;
+}
+
+// console.log(a + b); 
+//this throws an error, because the variables are not accessible outside of the brackets.
+console.log(c); //however, this one will log as the 'var' declaration is function-scoped (not block-scoped)
+
+//ES5
+(function() {
+    var c = 3;
+})();
+
+//console.log(c);
+
+/*
+In effect, using ES6 allows you to use brackets and the 'const' and 'let' variables to create 'data privacy'
+in the fashion that using an IIFE allows you in ES5, like in the example on lines 85-87.
+*/
