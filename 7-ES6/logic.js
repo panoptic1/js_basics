@@ -92,3 +92,32 @@ console.log(c); //however, this one will log as the 'var' declaration is functio
 In effect, using ES6 allows you to use brackets and the 'const' and 'let' variables to create 'data privacy'
 in the fashion that using an IIFE allows you in ES5, like in the example on lines 85-87.
 */
+
+//Lecture: STRINGS
+
+let firstName = 'Ryan';
+let lastName = 'Helgerson';
+const yearOfBirth = 1983
+function calcAge(year) {
+    return 2020 - year;
+}
+
+/*
+Template Literals
+*/
+
+//  ES5
+console.log('This is ' + firstName + ' ' + lastName + '. He was born in ' + yearOfBirth + '. Today he is '  + calcAge(yearOfBirth) + ' years old.');
+
+//Using backticks and the template literal syntax, you can just plop variables right into a string
+//ES6
+console.log(`This is ${firstName} ${lastName}. He was born in ${yearOfBirth}. Today he is ${calcAge(yearOfBirth)} years old.`);
+//The backticks signal to JS that you want to use a template literal.
+
+const fullName = `${firstName} ${lastName}`;
+console.log(fullName.startsWith('R'));
+console.log(fullName.endsWith('son'));
+console.log(fullName.includes('an He'));
+
+//'startsWith and endsWith allows us to check whether or not a string starts or ends with something
+console.log(`${firstName} `.repeat(5));
