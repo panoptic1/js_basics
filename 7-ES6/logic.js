@@ -232,3 +232,40 @@ var friends = ['Bob', 'Jane', 'Mark'];
 
 new Persona('Juan').myFriends6(friends);
 
+//Lecture: Destructuring
+
+//ES5
+var john = ['John', 26];
+var name = john[0];
+var age = john[1];
+console.log(name, age);
+
+//ES6
+const [nombre, edad] = ['John', 26];
+console.log(nombre);
+console.log(edad);
+
+const obj = {
+    firstNombre : 'Ryan',
+    apellido : 'Helgerson'
+};
+
+const {firstNombre, apellido} = obj;
+//the variable names inside of the braces MUST be the same as the names of the keys inside of the object in order to function
+console.log(firstNombre);
+console.log(apellido);
+
+//if you don't want the variable names to match with the key names, you can use this structure:
+const {firstNombre: a, apellido: b} = obj;
+console.log(a);
+console.log(b);
+
+function calcAgeRetirement(year) {
+    const age2 = new Date().getFullYear() - year;
+    return [age2, 65 - age2];
+}
+
+const[age2, retirement] = calcAgeRetirement(1990);
+
+console.log(age2);
+console.log(retirement);
