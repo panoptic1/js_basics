@@ -146,3 +146,89 @@ ages6 = years.map((el, index) => {
     return `Age element ${index + 1} : ${age}.`
 });
 console.log(ages6);
+
+// Lecture: Arrow Functions 2
+
+// ES5
+var box5 = {
+    color: `green`,
+    position : 1,
+    clickMe: function() {
+
+        var self = this; //when adding the event listener below, you can't directly use 'this' as it is part of a regular function and thus points at the global object
+        //capturing 'this' in a variable in this fashion is a hacky workaround
+        document.querySelector('.green').addEventListener('click', function(){
+            var str = 'This is box number ' + self.position + ` and it is ` + self.color;
+            alert(str);
+        });
+    }
+}
+box5.clickMe();
+
+// ES6
+const box6 = {
+    color: `green`,
+    position : 1,
+    clickMe: function() {
+        document.querySelector('.green').addEventListener('click', () => {
+            var str = `This is box number ${this.position} and it is ${this.color}.`
+            alert(str);
+        });
+    }
+}
+box6.clickMe();
+
+// ES6
+// const box666 = {
+//     color: `green`,
+//     position : 1,
+//     clickMe: () => {
+//         document.querySelector('.green').addEventListener('click', () => {
+//             var str = `This is box number ${this.position} and it is ${this.color}.`
+//             alert(str);
+//         });
+//     }
+// }
+// box666.clickMe();
+/*
+Alright this is a little murky BUT...This one doesn't work because by using an arrow function on line 185, it doesn't change the scope of the
+'this' keyword at all. In other words, if you use only arrow functions within an object, then 'this' remains bound to the global object.
+*/
+
+function Person(name) {
+    this.name = name;
+};
+
+function Persona(name) {
+    this.name = name;
+};
+
+//ES5
+Person.prototype.myFriends5 = 
+function(friends) {
+
+    var arr = friends.map(function(el)
+    {
+        return this.name + ' is friends with ' + el;
+    }.bind(this));//'this' is bound to the callback function above with bind.
+    console.log(arr);
+}
+
+var friends = ['Bob', 'Jane', 'Mark'];
+
+new Person('John').myFriends5(friends);
+
+//ES6
+Persona.prototype.myFriends6 = 
+function(friends) {
+
+    var arr = friends.map((el) =>
+        `${this.name} is friends with ${el}.`
+    );//because of the arrow function, we no longer need to use the bind method
+    console.log(arr);
+}
+
+var friends = ['Bob', 'Jane', 'Mark'];
+
+new Persona('Juan').myFriends6(friends);
+
