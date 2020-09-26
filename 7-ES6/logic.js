@@ -56,13 +56,13 @@ function driversLicense6(passedTest) {
 
 driversLicense6(true);
 
-let i = 23;
+//let i = 23;
 
-for (let i =0; i < 5; i++) {
-    console.log(i); //This logs 0, 1, 2, 3, 4...
-}
+// for (let i =0; i < 5; i++) {
+//     console.log(i); //This logs 0, 1, 2, 3, 4...
+// }
 
-console.log(i); //... and this logs '23'
+// console.log(i); //... and this logs '23'
 
 /*
 This is cool. The two 'i' variables behave completely independently and don't interfere with one another whatsoever.
@@ -269,3 +269,62 @@ const[age2, retirement] = calcAgeRetirement(1990);
 
 console.log(age2);
 console.log(retirement);
+
+//Lecture: Arrays in ES6
+//New array methods!
+
+const boxes = document.querySelectorAll('.box');
+//this will return a node list instead of an array.
+//ES5
+
+var boxesArr5 = Array.prototype.slice.call(boxes);
+boxesArr5.forEach(function(el) {
+    el.style.backgroundColor =
+    'tomato';
+});
+
+
+//ES6 - the from method
+const boxesArr6 = Array.from(boxes)
+boxesArr6.forEach(el => el.style.backgroundColor = 'dodgerBlue');
+
+/*
+Suppose we were to want to change the inner text of the first and third boxes but skip the second one because it already says 'blue'...
+*/
+
+//ES5
+/*
+for (var i = 0; i < boxesArr5.length; i++) {
+    console.log('It works.');
+
+    if(boxesArr5[i].className === 'box blue') {
+        continue;
+    }
+
+    boxesArr5[i].textContent = 'I changed to tomato!';
+    
+}
+*/
+
+//ES6 - the 'for of' loop
+for (const el of boxesArr6) {
+    if (el.className.includes('blue')) {
+        continue;
+    }
+    el.textContent = 'I changed to blue!'
+}
+
+//ES5
+var ages = [12, 17, 8, 21, 14, 11];
+
+var legal = ages.map(function(el) {
+    return el >= 18;
+});
+console.log(legal);
+
+console.log(legal.indexOf(true));
+console.log(ages[legal.indexOf(true)]);
+
+//ES6 - findIndex
+console.log(ages.findIndex(el => el >= 18));
+console.log(ages.find(el => el >= 18));
