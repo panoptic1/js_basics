@@ -273,20 +273,20 @@ console.log(retirement);
 //Lecture: Arrays in ES6
 //New array methods!
 
-const boxes = document.querySelectorAll('.box');
+//const boxes = document.querySelectorAll('.box');
 //this will return a node list instead of an array.
 //ES5
 
-var boxesArr5 = Array.prototype.slice.call(boxes);
-boxesArr5.forEach(function(el) {
-    el.style.backgroundColor =
-    'tomato';
-});
+// var boxesArr5 = Array.prototype.slice.call(boxes);
+// boxesArr5.forEach(function(el) {
+//     el.style.backgroundColor =
+//     'tomato';
+// });
 
 
 //ES6 - the from method
-const boxesArr6 = Array.from(boxes)
-boxesArr6.forEach(el => el.style.backgroundColor = 'dodgerBlue');
+// const boxesArr6 = Array.from(boxes)
+// boxesArr6.forEach(el => el.style.backgroundColor = 'dodgerBlue');
 
 /*
 Suppose we were to want to change the inner text of the first and third boxes but skip the second one because it already says 'blue'...
@@ -307,12 +307,12 @@ for (var i = 0; i < boxesArr5.length; i++) {
 */
 
 //ES6 - the 'for of' loop
-for (const el of boxesArr6) {
-    if (el.className.includes('blue')) {
-        continue;
-    }
-    el.textContent = 'I changed to blue!'
-}
+// for (const el of boxesArr6) {
+//     if (el.className.includes('blue')) {
+//         continue;
+//     }
+//     el.textContent = 'I changed to blue!'
+// }
 
 //ES5
 var ages = [12, 17, 8, 21, 14, 11];
@@ -328,3 +328,39 @@ console.log(ages[legal.indexOf(true)]);
 //ES6 - findIndex
 console.log(ages.findIndex(el => el >= 18));
 console.log(ages.find(el => el >= 18));
+
+//Lecture: The Spread Operator
+
+function addFourAges (a, b, c, d) {
+    return a + b + c + d;
+};
+
+var sum1 = addFourAges (18, 30, 12, 21);
+console.log(sum1);
+
+//What if all of the age values existed in an array? How could you feed the array into the function on line 334?
+
+//ES5
+var ages = [18, 30, 12, 21];
+
+//We're going to use the apply method here, which receives an array and calls the function that it is called on. 
+var sum2 = addFourAges.apply(null, ages);
+console.log(sum2);
+
+//ES6
+const sum3 = addFourAges(...ages);
+console.log(sum3);
+//This is nifty. The 'spread' operator which is part of ES6 (the ellipses) basically takes the values out of the array that it is called on
+
+const familyHelgerson = [`Don`, `Judy`, `Ryan`, `Troy`];
+const familyCruz = [`Jose`, `Delia`, `Rudy`, `Jazmin`];
+const offspringHelgyCruz = [`Damon`, `Roz`];
+const bigFamily = [...familyHelgerson, ...familyCruz, ...offspringHelgyCruz];
+console.log(bigFamily);
+
+const h = document.querySelector('h1');
+const boxes = document.querySelectorAll('.box');
+const all = [h, ...boxes];
+
+Array.from(all).forEach(el => el.style.color = 'purple');
+
