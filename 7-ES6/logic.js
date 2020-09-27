@@ -364,3 +364,54 @@ const all = [h, ...boxes];
 
 Array.from(all).forEach(el => el.style.color = 'purple');
 
+//Lecture: Rest parameters
+
+//they use the same notation as the spread operator (...)
+//HOWEVER they are very different or perhaps inverse
+
+//ES5
+// function isLegalAge5(){
+//     console.log(arguments);
+//     var argsArr = Array.prototype.slice.call(arguments);
+
+//     argsArr.forEach(function(el){
+//         console.log((2020 - el) >= 21);
+//     })
+// }
+
+// isLegalAge5(1999, 2001, 2010);
+// isLegalAge5(1983, 1999, 1972, 2004, 2016);
+
+// //ES6
+// function isLegalAge6(...years) {
+//     years.forEach(el => console.log((2020 - el) >= 21))
+// };
+
+// isLegalAge6(1990, 2000, 2010);
+
+//ES5
+function isLegalAge5(limit){
+    console.log(arguments);
+    var argsArr = Array.prototype.slice.call(arguments, 1);
+    console.log(argsArr);
+
+    argsArr.forEach(function(el){
+        console.log((2020 - el) >= limit);
+    })
+}
+
+isLegalAge5(21, 1999, 2001, 2010);
+//isLegalAge5(1983, 1999, 1972, 2004, 2016);
+
+//ES6
+function isLegalAge6(limit, ...years) {
+    years.forEach(el => console.log((2020 - el) >= limit))
+};
+
+isLegalAge6(1990, 2000, 2010, 1995, 1999, 2002);
+
+
+
+
+
+
