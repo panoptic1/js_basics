@@ -411,6 +411,35 @@ function isLegalAge6(limit, ...years) {
 isLegalAge6(1990, 2000, 2010, 1995, 1999, 2002);
 
 
+//Lecture: Default parameters
+
+//ES5
+// function SmithPerson(firstName, yearOfBirth, lastName, nationality) {
+
+//     lastName === undefined ? lastName = `Smith` : lastName = lastName;
+//     nationality === undefined ? nationality = `american` : nationality = nationality;
+//     this.firstName = firstName;
+//     this.lastName = lastName;
+//     this.yearOfBirth = yearOfBirth;
+//     this.nationality = nationality;
+// }
+
+
+//ES6
+function SmithPerson(firstName, yearOfBirth, lastName = `Smith`, nationality= `american`) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.yearOfBirth = yearOfBirth;
+    this.nationality = nationality;
+}
+
+var john = new SmithPerson(`John`, 1990);
+console.log(john);
+
+var emily = new SmithPerson('Emily', 1983, 'Cruz', 'spanish');
+console.log(emily);
+
+
 
 
 
