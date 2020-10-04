@@ -439,8 +439,71 @@ console.log(john);
 var emily = new SmithPerson('Emily', 1983, 'Cruz', 'spanish');
 console.log(emily);
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Lecture: Maps
 
+/*
+What is a map?
+A common use of objects in JS is to use them as 'hash maps'.
+This means that they are used to map string keys to arbitrary values. (???)
+We did that when we were making simple things like the "John" object.
+That was then...this is ES6.
+Instead of using an object, we can use 'maps'
+A map is a new key-value data struture wherein we can use anything in the keys. Hm
+*/
 
+const question = new Map();
+//And that's a Map!
+
+//Use the set method to start adding data to the map
+question.set('question', 'What is the official name of the latest major JavaScript version?');
+
+//Now let's add some answers
+question.set(1, 'ES5');
+question.set(2, 'ES6');
+question.set(3, 'ES2015');
+question.set(4, 'ES7');
+
+//add the correct answer
+question.set(`correct`, 3);
+
+//set what happens if the question is true or false
+question.set(true, 'Correct Answer!');
+question.set(false, 'No sir!');
+
+//get data from the Map by using the 'get' method
+console.log(question.get(`question`));
+
+//this gives you the length of the map
+console.log(question.size);
+
+//what about if you want to delete something from the map?
+//question.delete(4);
+
+//check to see if there is data inside of the map using the 'has' method
+// if(question.has(true)){
+//     console.log("It has a key named 'true!'")
+// }
+
+//finally, if you want to clear everything from the map...
+//question.clear();
+
+//they are iterable! You can loop through the map!
+//the forEach method is part of the map's prototype
+// question.forEach((value, key) =>
+// console.log(`This is key ${key} and it's value is ${value}.`))
+
+//the 'for of' loop is also at our disposal
+for (let [key, value] of question.entries()){
+    //to get the value, we can use destructuring
+    if (typeof(key) === 'number') {
+        console.log(`Answer ${key}: ${value}`)
+    }
+}
+
+const ans = parseInt(prompt(`Write the correct answer`));
+
+console.log(question.get(ans === question.get('correct')));
 
 
 
