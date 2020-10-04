@@ -476,14 +476,21 @@ console.log(question.get(`question`));
 
 //this gives you the length of the map
 console.log(question.size);
+console.log(question);
 
 //what about if you want to delete something from the map?
 //question.delete(4);
 
-//check to see if there is data inside of the map using the 'has' method
-// if(question.has(true)){
-//     console.log("It has a key named 'true!'")
-// }
+//check to see if there is a given key inside of the map using the 'has' method
+if(question.has(4)){
+    console.log(`4 is here!`);
+}
+
+if(question.has(5)){
+    console.log(`5 is here!`);
+} else {
+    console.log('No 5 here!')
+}
 
 //finally, if you want to clear everything from the map...
 //question.clear();
@@ -505,5 +512,50 @@ const ans = parseInt(prompt(`Write the correct answer`));
 
 console.log(question.get(ans === question.get('correct')));
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Lecture: Classes
+
+//ES5
+var Person5 = function(name, birthYear, job) {
+    this.name = name;
+    this.birthYear = birthYear;
+    this.job = job;
+}
+
+Person5.prototype.calculateAge = function() {
+    var age = new Date().getFullYear() - this.birthYear;
+    console.log(age);
+}
+
+var john5 = new Person5('John', 1990, 'teacher');
+
+//console.log(`John's age is ${john5.calculateAge()}.`);
+
+//ES6
+class Person6 {
+    constructor (name, birthYear, job) {
+        this.name = name;
+        this.birthYear = birthYear;
+        this.job = job;
+    }
+
+    calculateAge() {
+        //add method code here, this class now has a method!
+        var d = new Date();
+        var age = d.getFullYear() - this.birthYear;
+        console.log(age); //there is some bug in the code in this section as this number logs NaN
+    }
+
+    static greeting(){
+        console.log('Hey there!');
+    }
+}
+
+const john6 = new Person6('John', 1990, 'teacher');
+
+Person6.greeting();
+
+john5.calculateAge();
+john6.calculateAge();
 
 
