@@ -516,6 +516,55 @@ console.log(question.get(ans === question.get('correct')));
 //Lecture: Classes
 
 //ES5
+// var Person5 = function(name, birthYear, job) {
+//     this.name = name;
+//     this.birthYear = birthYear;
+//     this.job = job;
+// }
+
+// Person5.prototype.calculateAge = function() {
+//     var age = new Date().getFullYear() - this.birthYear;
+//     console.log(age);
+// }
+
+// var john5 = new Person5('John', 1990, 'teacher');
+
+// //console.log(`John's age is ${john5.calculateAge()}.`);
+
+// //ES6
+// class Person6 {
+//     constructor (name, birthYear, job) {
+//         this.name = name;
+//         this.birthYear = birthYear;
+//         this.job = job;
+//     }
+
+//     calculateAge() {
+//         //add method code here, this class now has a method!
+//         var d = new Date();
+//         var age = d.getFullYear() - this.birthYear;
+//         console.log(age); //there is some bug in the code in this section as this number logs NaN
+//     }
+
+//     static greeting(){
+//         console.log('Hey there!');
+//     }
+// }
+
+// const john6 = new Person6('John', 1990, 'teacher');
+
+// Person6.greeting();
+
+// john5.calculateAge();
+// john6.calculateAge();
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Lecture: Classes with Subclasses
+
+
+//ES5
+//Our good old 'Person' constructor will be our 'superclass'
 var Person5 = function(name, birthYear, job) {
     this.name = name;
     this.birthYear = birthYear;
@@ -527,9 +576,27 @@ Person5.prototype.calculateAge = function() {
     console.log(age);
 }
 
-var john5 = new Person5('John', 1990, 'teacher');
+//
+var Athlete5 = function(name, birthYear, job, olympics, medals){
+    //this is kinda wild bust basically by calling Person5 and setting 'this' to the current instantiation of a new Athlete, you invoke the Person constructor
+    Person5.call(this, name, birthYear, job);
+    this.olympics = olympics;
+    this.medals = medals;
+};
 
-//console.log(`John's age is ${john5.calculateAge()}.`);
+//we are manually setting the prototype of the Athlete class here to that of the Person prototype, so it now inherits its methods
+Athlete5.prototype = Object.create(Person5.prototype);
+
+//And then we can set new methods to the Athlete class that only it has access to
+Athlete5.prototype.wonMedal = function() {
+    this.medals++;
+    console.log(this.medals);
+};
+
+var johnAthlete5 = new Athlete5('John', 1990, 'swimmer', 3, 10);
+
+johnAthlete5.calculateAge();
+johnAthlete5.wonMedal();
 
 //ES6
 class Person6 {
@@ -551,11 +618,20 @@ class Person6 {
     }
 }
 
-const john6 = new Person6('John', 1990, 'teacher');
+class Athlete6 extends Person6 {
+    constructor(name, birthYear, job, olympics, medals) {
+        super(name, birthYear, job);
+        this.olympics = olympics;
+        this.medals = medals;
+    }
 
-Person6.greeting();
+    wonMedal() {
+        this.medals++;
+        console.log(this.medals);
+    }
+}
 
-john5.calculateAge();
-john6.calculateAge();
+const johnAthlete6 = new Athlete6('John', 1990, 'swimmer', 3, 10);
 
-
+johnAthlete6.wonMedal();
+johnAthlete6.calculateAge();
