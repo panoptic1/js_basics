@@ -23,6 +23,7 @@ HINT: Use some of the ES6 features: classes, subclasses, template strings, defau
 */
 console.log(`Challenge accepted!`);
 
+//create a class of Element to represent both Parks and Streets
 class Element {
     constructor (name, buildYear){
         this.name = name;
@@ -30,6 +31,7 @@ class Element {
     }
 }
 
+//Create subclasses for both the parks and the streets
 class Park extends Element {
     constructor(name, buildYear, trees, area) {
         super(name, buildYear);
