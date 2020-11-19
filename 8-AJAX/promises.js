@@ -24,18 +24,31 @@ const getRelated = publisher => {
     })
 };
 
-getIDs
-.then(IDs => {
+// getIDs
+// .then(IDs => {
+//     console.log(IDs);
+//     return getRecipe(IDs[2])
+// })
+// .then(recipe => {
+//     console.log(recipe);
+//     return getRelated('Ryan');
+// })
+// .then(recipe => {
+//     console.log(recipe);
+// })
+// .catch(error => {
+//     console.log(error);
+// })
+
+//Using Async/Await to consume promises
+
+async function getRecipesAsync() {
+    const IDs = await getIDs;
     console.log(IDs);
-    return getRecipe(IDs[2])
-})
-.then(recipe => {
+    const recipe = await getRecipe(IDs[2]);
     console.log(recipe);
-    return getRelated('Ryan');
-})
-.then(recipe => {
-    console.log(recipe);
-})
-.catch(error => {
-    console.log(error);
-})
+    const related = await getRelated('Ryan Helgerson');
+    console.log(related);
+}
+
+getRecipesAsync();
